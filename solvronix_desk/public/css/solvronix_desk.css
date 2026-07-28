@@ -1338,12 +1338,10 @@ html[data-theme="dark"] #st-powered-by {
   color: var(--st-accent) !important;
 }
 
-/* Workspace editor block picker - keep add-block menus above editable rows */
-[data-page-route="Workspaces"] .popover,
-[data-page-route="Workspaces"] .dropdown-menu,
-[data-page-route="Workspaces"] .frappe-menu,
-[data-page-route="Workspaces"] .ce-popover,
-[data-page-route="Workspaces"] .ce-popover__container,
+/* Editor.js block picker - keep add-block menus above editable rows */
+.ce-popover,
+.ce-popover--opened,
+.ce-popover__container,
 [data-page-route="Workspaces"] .slash-command-menu,
 [data-page-route="Workspaces"] .block-menu,
 [data-page-route="Workspaces"] .block-menu-list,
@@ -1359,11 +1357,11 @@ html[data-theme="dark"] #st-powered-by {
   color: var(--st-text, #1A1A2E) !important;
   opacity: 1 !important;
   overflow: hidden !important;
-  z-index: 2000 !important;
+  z-index: 9999 !important;
 }
 
-[data-page-route="Workspaces"] .ce-popover__search,
-[data-page-route="Workspaces"] .ce-popover__search input,
+.ce-popover__search,
+.ce-popover__search input,
 [data-page-route="Workspaces"] .slash-command-menu input,
 [data-page-route="Workspaces"] .block-menu input,
 [data-page-route="Workspaces"] .workspace-block-picker input,
@@ -1374,7 +1372,9 @@ html[data-theme="dark"] #st-powered-by {
   color: var(--st-text, #1A1A2E) !important;
 }
 
-[data-page-route="Workspaces"] .ce-popover__item,
+.ce-popover-item,
+.ce-popover-item__title,
+.ce-popover-item__icon,
 [data-page-route="Workspaces"] .slash-command-menu li,
 [data-page-route="Workspaces"] .block-menu li,
 [data-page-route="Workspaces"] .workspace-block-picker li,
@@ -1383,8 +1383,9 @@ html[data-theme="dark"] #st-powered-by {
   color: var(--st-text, #1A1A2E) !important;
 }
 
-[data-page-route="Workspaces"] .ce-popover__item:hover,
-[data-page-route="Workspaces"] .ce-popover__item--focused,
+.ce-popover-item:hover,
+.ce-popover-item--focused,
+.ce-popover-item--active,
 [data-page-route="Workspaces"] .slash-command-menu li:hover,
 [data-page-route="Workspaces"] .block-menu li:hover,
 [data-page-route="Workspaces"] .workspace-block-picker li:hover,

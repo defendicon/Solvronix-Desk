@@ -186,12 +186,10 @@ html[data-theme="dark"] .dropdown-divider {
   border-color: rgba(255,255,255,0.08) !important;
 }
 
-/* Workspace editor block picker */
-html[data-theme="dark"] [data-page-route="Workspaces"] .popover,
-html[data-theme="dark"] [data-page-route="Workspaces"] .dropdown-menu,
-html[data-theme="dark"] [data-page-route="Workspaces"] .frappe-menu,
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover,
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__container,
+/* Editor.js block picker */
+html[data-theme="dark"] .ce-popover,
+html[data-theme="dark"] .ce-popover--opened,
+html[data-theme="dark"] .ce-popover__container,
 html[data-theme="dark"] [data-page-route="Workspaces"] .slash-command-menu,
 html[data-theme="dark"] [data-page-route="Workspaces"] .block-menu,
 html[data-theme="dark"] [data-page-route="Workspaces"] .block-menu-list,
@@ -206,8 +204,8 @@ html[data-theme="dark"] [data-page-route="Workspaces"] [class*="template"][class
   color: var(--st-text) !important;
 }
 
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__search,
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__search input,
+html[data-theme="dark"] .ce-popover__search,
+html[data-theme="dark"] .ce-popover__search input,
 html[data-theme="dark"] [data-page-route="Workspaces"] .slash-command-menu input,
 html[data-theme="dark"] [data-page-route="Workspaces"] .block-menu input,
 html[data-theme="dark"] [data-page-route="Workspaces"] .workspace-block-picker input,
@@ -218,7 +216,9 @@ html[data-theme="dark"] [data-page-route="Workspaces"] [class*="template"][class
   color: var(--st-text) !important;
 }
 
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__item,
+html[data-theme="dark"] .ce-popover-item,
+html[data-theme="dark"] .ce-popover-item__title,
+html[data-theme="dark"] .ce-popover-item__icon,
 html[data-theme="dark"] [data-page-route="Workspaces"] .slash-command-menu li,
 html[data-theme="dark"] [data-page-route="Workspaces"] .block-menu li,
 html[data-theme="dark"] [data-page-route="Workspaces"] .workspace-block-picker li,
@@ -227,8 +227,9 @@ html[data-theme="dark"] [data-page-route="Workspaces"] [class*="template"][class
   color: var(--st-text) !important;
 }
 
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__item:hover,
-html[data-theme="dark"] [data-page-route="Workspaces"] .ce-popover__item--focused,
+html[data-theme="dark"] .ce-popover-item:hover,
+html[data-theme="dark"] .ce-popover-item--focused,
+html[data-theme="dark"] .ce-popover-item--active,
 html[data-theme="dark"] [data-page-route="Workspaces"] .slash-command-menu li:hover,
 html[data-theme="dark"] [data-page-route="Workspaces"] .block-menu li:hover,
 html[data-theme="dark"] [data-page-route="Workspaces"] .workspace-block-picker li:hover,
