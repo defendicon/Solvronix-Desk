@@ -1338,6 +1338,62 @@ html[data-theme="dark"] #st-powered-by {
   color: var(--st-accent) !important;
 }
 
+/* Workspace editor block picker - keep add-block menus above editable rows */
+[data-page-route="Workspaces"] .popover,
+[data-page-route="Workspaces"] .dropdown-menu,
+[data-page-route="Workspaces"] .frappe-menu,
+[data-page-route="Workspaces"] .ce-popover,
+[data-page-route="Workspaces"] .ce-popover__container,
+[data-page-route="Workspaces"] .slash-command-menu,
+[data-page-route="Workspaces"] .block-menu,
+[data-page-route="Workspaces"] .block-menu-list,
+[data-page-route="Workspaces"] .block-editor-popover,
+[data-page-route="Workspaces"] .workspace-block-menu,
+[data-page-route="Workspaces"] .workspace-block-picker,
+[data-page-route="Workspaces"] [class*="block"][class*="menu"],
+[data-page-route="Workspaces"] [class*="template"][class*="menu"] {
+  background: var(--st-card-bg, #FFFFFF) !important;
+  border: 1px solid var(--st-card-border, rgba(0,0,0,0.10)) !important;
+  border-radius: var(--st-radius, 8px) !important;
+  box-shadow: var(--st-shadow-lg) !important;
+  color: var(--st-text, #1A1A2E) !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  z-index: 2000 !important;
+}
+
+[data-page-route="Workspaces"] .ce-popover__search,
+[data-page-route="Workspaces"] .ce-popover__search input,
+[data-page-route="Workspaces"] .slash-command-menu input,
+[data-page-route="Workspaces"] .block-menu input,
+[data-page-route="Workspaces"] .workspace-block-picker input,
+[data-page-route="Workspaces"] [class*="block"][class*="menu"] input,
+[data-page-route="Workspaces"] [class*="template"][class*="menu"] input {
+  background: var(--st-input-bg, #FFFFFF) !important;
+  border-color: var(--st-input-border, rgba(0,0,0,0.16)) !important;
+  color: var(--st-text, #1A1A2E) !important;
+}
+
+[data-page-route="Workspaces"] .ce-popover__item,
+[data-page-route="Workspaces"] .slash-command-menu li,
+[data-page-route="Workspaces"] .block-menu li,
+[data-page-route="Workspaces"] .workspace-block-picker li,
+[data-page-route="Workspaces"] [class*="block"][class*="menu"] li,
+[data-page-route="Workspaces"] [class*="template"][class*="menu"] li {
+  color: var(--st-text, #1A1A2E) !important;
+}
+
+[data-page-route="Workspaces"] .ce-popover__item:hover,
+[data-page-route="Workspaces"] .ce-popover__item--focused,
+[data-page-route="Workspaces"] .slash-command-menu li:hover,
+[data-page-route="Workspaces"] .block-menu li:hover,
+[data-page-route="Workspaces"] .workspace-block-picker li:hover,
+[data-page-route="Workspaces"] [class*="block"][class*="menu"] li:hover,
+[data-page-route="Workspaces"] [class*="template"][class*="menu"] li:hover {
+  background: var(--st-primary-light, rgba(0,0,0,0.05)) !important;
+  color: var(--st-accent, #6B3E66) !important;
+}
+
 /* Tooltip */
 .tooltip-inner {
   border-radius: var(--st-radius-sm) !important;
