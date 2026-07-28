@@ -187,6 +187,23 @@ html[data-theme="dark"] .dropdown-divider {
 }
 
 /* Editor.js block picker */
+html[data-theme="dark"] [data-page-route="Workspaces"] .codex-editor,
+html[data-theme="dark"] [data-page-route="Workspaces"] .codex-editor__redactor,
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-block,
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-block__content {
+  overflow: visible !important;
+}
+
+html[data-theme="dark"] [data-page-route="Workspaces"] .codex-editor--toolbox-opened,
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-block:has(.ce-toolbar--opened),
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-block:has(.ce-popover--opened),
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-block--focused,
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-toolbar,
+html[data-theme="dark"] [data-page-route="Workspaces"] .ce-toolbox {
+  position: relative !important;
+  z-index: 9998 !important;
+}
+
 html[data-theme="dark"] .ce-popover,
 html[data-theme="dark"] .ce-popover--opened,
 html[data-theme="dark"] .ce-popover__container,
