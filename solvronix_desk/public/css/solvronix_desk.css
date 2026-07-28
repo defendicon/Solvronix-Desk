@@ -676,6 +676,32 @@ input[type="checkbox"]:checked {
   color: var(--st-accent) !important;
 }
 
+/* Workspace group headings - readable on Home and every workspace page */
+.widget-group-title,
+.workspace-section-title,
+.workspace-section .section-title,
+.workspace-section .section-head,
+.workspace-section-head,
+.workspace-title,
+.workspace-heading {
+  color: var(--st-text, #1A1A2E) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="dark"] .widget-group-title,
+html[data-theme="dark"] .workspace-section-title,
+html[data-theme="dark"] .workspace-section .section-title,
+html[data-theme="dark"] .workspace-section .section-head,
+html[data-theme="dark"] .workspace-section-head,
+html[data-theme="dark"] .workspace-title,
+html[data-theme="dark"] .workspace-heading {
+  color: var(--st-text, #F1F5F9) !important;
+}
+
 /* ── PAGE HEAD ───────────────────────────────────────────────────────────────── */
 /* Light mode: clean white card with accent left stripe */
 html:not([data-theme="dark"]) .desk-page > .page-head,
