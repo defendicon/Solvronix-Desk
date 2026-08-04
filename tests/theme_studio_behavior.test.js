@@ -154,6 +154,24 @@ function bindThemeStudio(studio) {
   return { rootHandlers, frameHandlers, windowHandlers, stageHandlers, chain };
 }
 
+test("profile application scopes and clears the Theme Studio preview", () => {
+  const studio = loadThemeStudio();
+  const attributes = {};
+  studio.$preview = {
+    length: 1,
+    attr(name, value) { attributes[name] = String(value); return this; },
+    removeAttr(name) { delete attributes[name]; return this; },
+  };
+
+  studio.active_profile = "builtin-erpnext-v15";
+  studio._sync_preview_profile();
+  assert.equal(attributes["data-st-theme-profile"], "builtin-erpnext-v15");
+
+  studio.active_profile = "";
+  studio._sync_preview_profile();
+  assert.equal(attributes["data-st-theme-profile"], undefined);
+});
+
 test("dark preview derives untouched defaults but preserves edited colors", () => {
   const studio = loadThemeStudio();
   const config = {
@@ -766,22 +784,29 @@ test("light preview repairs mixed dark tokens individually", () => {
   assert.equal(resolved.muted_text_color, studio.state.defaults.muted_text_color);
 });
 
-test("workspace document state writes live and synthetic shortcut style attributes", () => {
+test("workspace document state writes shortcut and active profile attributes", () => {
   const studio = loadThemeStudio();
   const attributes = {};
   const frameDocument = {
-    documentElement: { setAttribute(name, value) { attributes[name] = value; } },
+    documentElement: {
+      setAttribute(name, value) { attributes[name] = value; },
+      removeAttribute(name) { delete attributes[name]; },
+    },
   };
 
   studio.config = { shortcut_style: "Outline" };
+  studio.active_profile = "builtin-erpnext-v15";
   assert.equal(studio._sync_workspace_document_state(frameDocument), true);
   assert.equal(attributes["data-shortcuts"], "outline");
   assert.equal(attributes["data-st-shortcuts"], "outline");
+  assert.equal(attributes["data-st-theme-profile"], "builtin-erpnext-v15");
 
   studio.config.shortcut_style = "Solid";
+  studio.active_profile = "";
   assert.equal(studio._sync_workspace_document_state(frameDocument), true);
   assert.equal(attributes["data-shortcuts"], "solid");
   assert.equal(attributes["data-st-shortcuts"], "solid");
+  assert.equal(attributes["data-st-theme-profile"], undefined);
 });
 
 test("apply synchronizes every schema color control to the exact effective preview color", () => {

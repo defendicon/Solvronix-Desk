@@ -12,8 +12,11 @@ app_version = "2.0.1"
 required_apps = []
 
 # ── PUBLIC LOGIN ASSETS ────────────────────────────────────────────────────────
-web_include_css = ["/assets/solvronix_desk/css/login.css?v=11"]
-web_include_js = ["/assets/solvronix_desk/js/login_theme.js?v=8"]
+web_include_css = [
+    "/assets/solvronix_desk/css/login.css?v=11",
+    "/assets/solvronix_desk/css/erpnext_v15.css?v=1",
+]
+web_include_js = ["/assets/solvronix_desk/js/login_theme.js?v=9"]
 
 # ── AUTHENTICATED DESK ASSETS ──────────────────────────────────────────────────
 # Query versions are bumped whenever an asset changes to invalidate browser cache.
@@ -28,7 +31,8 @@ app_include_css = [
     "/assets/solvronix_desk/css/dark_mode.css?v=14",
     "/assets/solvronix_desk/css/module_cards.css?v=2",
     "/assets/solvronix_desk/css/density.css?v=2",
-    "/assets/solvronix_desk/css/theme_studio.css?v=16",
+    "/assets/solvronix_desk/css/theme_studio.css?v=17",
+    "/assets/solvronix_desk/css/erpnext_v15.css?v=1",
 ]
 app_include_js = [
     "/assets/solvronix_desk/js/dark_mode.js?v=12",
@@ -39,7 +43,7 @@ app_include_js = [
     "/assets/solvronix_desk/js/progressive_forms.js?v=4",
     "/assets/solvronix_desk/js/notification_center.js?v=4",
     "/assets/solvronix_desk/js/module_cards.js?v=10",
-    "/assets/solvronix_desk/js/theme_runtime.js?v=8",
+    "/assets/solvronix_desk/js/theme_runtime.js?v=9",
     "/assets/solvronix_desk/js/chart_runtime.js?v=4",
 ]
 

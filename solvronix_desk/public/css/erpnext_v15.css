@@ -1,0 +1,557 @@
+/* ERPNext v15 visual compatibility profile for the Frappe/ERPNext v16 runtime. */
+
+/* ── V15 FOUNDATION ─────────────────────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] {
+  --st-v15-white: #ffffff;
+  --st-v15-gray-50: #f8f8f8;
+  --st-v15-gray-100: #f3f3f3;
+  --st-v15-gray-200: #ededed;
+  --st-v15-gray-300: #e2e2e2;
+  --st-v15-gray-400: #c7c7c7;
+  --st-v15-gray-500: #999999;
+  --st-v15-gray-600: #7c7c7c;
+  --st-v15-gray-700: #525252;
+  --st-v15-gray-800: #383838;
+  --st-v15-gray-900: #171717;
+  --st-v15-blue-600: #007be0;
+  --st-v15-control-height: 28px;
+  --st-v15-navbar-height: 48px;
+  --st-v15-radius: 8px;
+  --st-v15-card-radius: 12px;
+  --st-v15-shadow-xs: rgba(0, 0, 0, 0.05) 0 0.5px 0,
+    rgba(0, 0, 0, 0.08) 0 0 0 1px,
+    rgba(0, 0, 0, 0.05) 0 2px 4px;
+  --st-v15-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --st-v15-shadow-md: 0 0 1px rgba(0, 0, 0, 0.12),
+    0 0.5px 2px rgba(0, 0, 0, 0.15),
+    0 2px 3px rgba(0, 0, 0, 0.16);
+  --st-v15-shadow-2xl: 0 0 1px rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 10px 24px -3px rgba(0, 0, 0, 0.1);
+
+  --primary: var(--st-v15-gray-900);
+  --primary-color: var(--st-v15-gray-900);
+  --bg-color: var(--st-v15-white);
+  --fg-color: var(--st-v15-white);
+  --subtle-accent: var(--st-v15-gray-50);
+  --subtle-fg: var(--st-v15-gray-100);
+  --navbar-bg: var(--st-v15-white);
+  --fg-hover-color: var(--st-v15-gray-100);
+  --card-bg: var(--st-v15-white);
+  --control-bg: var(--st-v15-gray-100);
+  --control-bg-on-gray: var(--st-v15-gray-200);
+  --border-color: var(--st-v15-gray-200);
+  --dark-border-color: var(--st-v15-gray-300);
+  --table-border-color: var(--st-v15-gray-200);
+  --text-color: var(--st-v15-gray-800);
+  --text-muted: var(--st-v15-gray-700);
+  --text-light: var(--st-v15-gray-600);
+  --heading-color: var(--st-v15-gray-900);
+  --btn-primary: var(--st-v15-gray-900);
+  --btn-default-bg: var(--st-v15-gray-100);
+  --btn-default-hover-bg: var(--st-v15-gray-300);
+  --input-height: var(--st-v15-control-height);
+  --btn-height: var(--st-v15-control-height);
+  --navbar-height: var(--st-v15-navbar-height);
+  --border-radius: var(--st-v15-radius);
+  --border-radius-sm: var(--st-v15-radius);
+  --border-radius-md: 10px;
+  --border-radius-lg: var(--st-v15-card-radius);
+  --card-shadow: var(--st-v15-shadow-sm);
+  --modal-shadow: var(--st-v15-shadow-md);
+  --btn-shadow: var(--st-v15-shadow-xs);
+  --st-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+/* ── NATIVE V15 NAVBAR AND PAGE HEAD ────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] #st-top-toolbar {
+  display: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] body.st-has-toolbar .navbar,
+html[data-st-theme-profile="builtin-erpnext-v15"] body.st-has-toolbar header.navbar {
+  display: flex !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar,
+html[data-st-theme-profile="builtin-erpnext-v15"] header.navbar {
+  top: 0 !important;
+  min-height: var(--st-v15-navbar-height) !important;
+  height: var(--st-v15-navbar-height) !important;
+  padding: 0 !important;
+  background: var(--st-v15-white) !important;
+  border-bottom: 1px solid var(--st-v15-gray-200) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .container {
+  padding-inline: 1rem !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .nav-link,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .navbar-brand,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .navbar-nav > li > a,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .navbar-right .icon-btn,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .navbar-right svg {
+  color: var(--st-v15-gray-800) !important;
+  stroke: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .search-bar input,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .navbar-search input,
+html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .global-search-input {
+  height: var(--st-v15-control-height) !important;
+  padding-left: 36px !important;
+  background: var(--st-v15-gray-100) !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--st-v15-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-head,
+html[data-st-theme-profile="builtin-erpnext-v15"] .desk-page > .page-head,
+html[data-st-theme-profile="builtin-erpnext-v15"] .layout-main-section > .page-head {
+  min-height: 60px !important;
+  padding-block: 10px !important;
+  background: var(--st-v15-white) !important;
+  border-bottom: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-head .page-title,
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-head .title-text,
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-head .breadcrumb-area,
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-head .st-breadcrumb {
+  color: var(--st-v15-gray-800) !important;
+}
+
+/* ── SIDEBAR AND LAYOUT ─────────────────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] body.st-has-toolbar .body-sidebar,
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar {
+  top: var(--st-v15-navbar-height) !important;
+  width: 240px !important;
+  padding: 12px 14px !important;
+  background: var(--st-v15-white) !important;
+  border-right: 1px solid var(--st-v15-gray-200) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-container,
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-container.expanded {
+  width: 240px !important;
+  min-width: 240px !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-placeholder {
+  width: 240px !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar .item-anchor,
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-container.expanded .item-anchor {
+  min-height: 28px !important;
+  padding: 4px 8px !important;
+  border-radius: var(--st-v15-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar .standard-sidebar-item:not(.active-sidebar) .item-anchor:hover {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-800) !important;
+  transform: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar .standard-sidebar-item.active-sidebar .item-anchor {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-900) !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar .sidebar-item-icon,
+html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar .sidebar-item-icon svg {
+  color: var(--st-v15-gray-600) !important;
+  stroke: var(--st-v15-gray-600) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .layout-main-section,
+html[data-st-theme-profile="builtin-erpnext-v15"] .layout-main-section-wrapper,
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-container,
+html[data-st-theme-profile="builtin-erpnext-v15"] .page-body {
+  background: var(--st-v15-white) !important;
+}
+
+/* ── WORKSPACES, CARDS, AND DASHBOARDS ──────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget,
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget.onboarding-widget-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget.links-widget-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget.shortcut-widget-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .dashboard-widget-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .number-widget-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .card {
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-card-radius) !important;
+  box-shadow: var(--st-v15-shadow-sm) !important;
+  transform: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .shortcut-widget-box:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .dashboard-widget-box:hover {
+  border-color: var(--st-v15-gray-300) !important;
+  box-shadow: var(--st-v15-shadow-sm) !important;
+  transform: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget .widget-title,
+html[data-st-theme-profile="builtin-erpnext-v15"] .widget .widget-head,
+html[data-st-theme-profile="builtin-erpnext-v15"] .workspace .widget-title {
+  color: var(--st-v15-gray-800) !important;
+  font-weight: 500 !important;
+}
+
+/* ── BUTTONS, FORMS, AND GRIDS ──────────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn,
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-control,
+html[data-st-theme-profile="builtin-erpnext-v15"] .frappe-control .control-input,
+html[data-st-theme-profile="builtin-erpnext-v15"] .awesomplete > input {
+  min-height: var(--st-v15-control-height) !important;
+  border-radius: var(--st-v15-radius) !important;
+  transition: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-control,
+html[data-st-theme-profile="builtin-erpnext-v15"] .frappe-control .form-control,
+html[data-st-theme-profile="builtin-erpnext-v15"] .frappe-control .control-input {
+  background: var(--st-v15-gray-100) !important;
+  border: 1px solid transparent !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-control:focus,
+html[data-st-theme-profile="builtin-erpnext-v15"] .frappe-control .form-control:focus,
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn:focus-visible,
+html[data-st-theme-profile="builtin-erpnext-v15"] a:focus-visible {
+  border-color: var(--st-v15-gray-500) !important;
+  outline: 2px solid var(--st-v15-gray-300) !important;
+  outline-offset: 1px !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-control:disabled,
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-control[readonly],
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn:disabled {
+  background: var(--st-v15-gray-50) !important;
+  color: var(--st-v15-gray-600) !important;
+  opacity: 0.7 !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn-primary,
+html[data-st-theme-profile="builtin-erpnext-v15"] .primary-action {
+  background: var(--st-v15-gray-900) !important;
+  border-color: var(--st-v15-gray-900) !important;
+  color: var(--st-v15-white) !important;
+  box-shadow: var(--st-v15-shadow-xs) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn-default,
+html[data-st-theme-profile="builtin-erpnext-v15"] .btn-secondary {
+  background: var(--st-v15-gray-100) !important;
+  border-color: transparent !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .grid-heading-row,
+html[data-st-theme-profile="builtin-erpnext-v15"] .grid-row,
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-grid {
+  border-color: var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-radius) !important;
+}
+
+/* ── LISTS, REPORTS, AND DATATABLE ──────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] .list-row-head,
+html[data-st-theme-profile="builtin-erpnext-v15"] .list-row,
+html[data-st-theme-profile="builtin-erpnext-v15"] .result .list-row {
+  min-height: 40px !important;
+  background: var(--st-v15-white) !important;
+  border-color: var(--st-v15-gray-200) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .list-row:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .result .list-row:hover {
+  background: var(--st-v15-gray-50) !important;
+  transform: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .datatable,
+html[data-st-theme-profile="builtin-erpnext-v15"] .datatable .dt-scrollable,
+html[data-st-theme-profile="builtin-erpnext-v15"] .datatable .dt-cell {
+  background: var(--st-v15-white) !important;
+  border-color: var(--st-v15-gray-200) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .datatable .dt-header .dt-cell,
+html[data-st-theme-profile="builtin-erpnext-v15"] .datatable .dt-cell--header {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-700) !important;
+  font-weight: 500 !important;
+}
+
+/* ── OVERLAYS, MENUS, AND FEEDBACK ─────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] .modal-content,
+html[data-st-theme-profile="builtin-erpnext-v15"] .dropdown-menu,
+html[data-st-theme-profile="builtin-erpnext-v15"] .popover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .awesomplete > ul {
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-card-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: var(--st-v15-shadow-2xl) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .dropdown-item,
+html[data-st-theme-profile="builtin-erpnext-v15"] .dropdown-menu > li > a {
+  padding: 6px 8px !important;
+  border-radius: var(--st-v15-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .dropdown-item:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .dropdown-menu > li > a:hover {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .modal-header,
+html[data-st-theme-profile="builtin-erpnext-v15"] .modal-footer {
+  border-color: var(--st-v15-gray-200) !important;
+}
+
+/* ── SECONDARY DESK SURFACES ────────────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] .nav-tabs {
+  gap: 20px !important;
+  border-bottom: 1px solid var(--st-v15-gray-200) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .nav-tabs .nav-link,
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-tabs-list .form-tabs .nav-link {
+  padding: 8px 0 !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  color: var(--st-v15-gray-700) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .nav-tabs .nav-link.active,
+html[data-st-theme-profile="builtin-erpnext-v15"] .form-tabs-list .form-tabs .nav-link.active {
+  border-bottom-color: var(--st-v15-gray-900) !important;
+  color: var(--st-v15-gray-900) !important;
+  font-weight: 500 !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .kanban-column {
+  background: var(--st-v15-gray-50) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-card-radius) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .kanban-card {
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-radius) !important;
+  box-shadow: var(--st-v15-shadow-sm) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .kanban-card:hover {
+  border-color: var(--st-v15-gray-300) !important;
+  box-shadow: var(--st-v15-shadow-sm) !important;
+  transform: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .fc-unthemed,
+html[data-st-theme-profile="builtin-erpnext-v15"] .fc-view-container,
+html[data-st-theme-profile="builtin-erpnext-v15"] .fc-unthemed .fc-row,
+html[data-st-theme-profile="builtin-erpnext-v15"] .fc-unthemed .fc-popover {
+  background: var(--st-v15-white) !important;
+  border-color: var(--st-v15-gray-200) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .fc-unthemed .fc-today {
+  background: var(--st-v15-gray-100) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .timeline-content,
+html[data-st-theme-profile="builtin-erpnext-v15"] .timeline-message-box {
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-card-radius) !important;
+  box-shadow: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .timeline-dot {
+  background: var(--st-v15-white) !important;
+  border-color: var(--st-v15-gray-300) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .tree-link {
+  min-height: 28px !important;
+  padding: 4px 8px !important;
+  border-radius: var(--st-v15-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .tree-link:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .tree-link.active {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-900) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .toast-message,
+html[data-st-theme-profile="builtin-erpnext-v15"] .alert,
+html[data-st-theme-profile="builtin-erpnext-v15"] .msgprint {
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-radius) !important;
+  background: var(--st-v15-white) !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: var(--st-v15-shadow-md) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .pagination .page-link {
+  min-width: 28px !important;
+  height: 28px !important;
+  border-color: var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-radius) !important;
+  background: var(--st-v15-white) !important;
+  color: var(--st-v15-gray-700) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .filter-box,
+html[data-st-theme-profile="builtin-erpnext-v15"] .filter-list {
+  background: var(--st-v15-gray-50) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-radius) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .st-cp-modal,
+html[data-st-theme-profile="builtin-erpnext-v15"] #st-notif-panel {
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: var(--st-v15-card-radius) !important;
+  color: var(--st-v15-gray-800) !important;
+  box-shadow: var(--st-v15-shadow-2xl) !important;
+  backdrop-filter: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .st-cp-item:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .st-cp-item.st-selected,
+html[data-st-theme-profile="builtin-erpnext-v15"] .st-notif-item:hover,
+html[data-st-theme-profile="builtin-erpnext-v15"] .st-notif-item.unread {
+  background: var(--st-v15-gray-100) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+/* ── PUBLIC LOGIN ───────────────────────────────────────────────────────── */
+html[data-st-theme-profile="builtin-erpnext-v15"] body:has(.for-login),
+html[data-st-theme-profile="builtin-erpnext-v15"] body:has(.for-forgot),
+html[data-st-theme-profile="builtin-erpnext-v15"] body:has(.for-signup) {
+  background: var(--st-v15-white) !important;
+  background-image: none !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-login .page-card,
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-forgot .page-card,
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-signup .page-card {
+  max-width: 360px !important;
+  padding: 32px !important;
+  background: var(--st-v15-white) !important;
+  border: 1px solid var(--st-v15-gray-200) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--st-v15-shadow-sm) !important;
+}
+
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-login .page-card .form-control,
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-forgot .page-card .form-control,
+html[data-st-theme-profile="builtin-erpnext-v15"] .for-signup .page-card .form-control {
+  height: 36px !important;
+  background: var(--st-v15-gray-100) !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--st-v15-radius) !important;
+}
+
+/* ── V15 DARK PALETTE ──────────────────────────────────────────────────── */
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] {
+  --st-v15-white: #171717;
+  --st-v15-gray-50: #1f1f1f;
+  --st-v15-gray-100: #242424;
+  --st-v15-gray-200: #2e2e2e;
+  --st-v15-gray-300: #383838;
+  --st-v15-gray-500: #7c7c7c;
+  --st-v15-gray-600: #999999;
+  --st-v15-gray-700: #c7c7c7;
+  --st-v15-gray-800: #e2e2e2;
+  --st-v15-gray-900: #f8f8f8;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .navbar,
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .page-head,
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar,
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .widget,
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .modal-content,
+html[data-theme="dark"][data-st-theme-profile="builtin-erpnext-v15"] .dropdown-menu {
+  background: var(--st-v15-white) !important;
+  border-color: var(--st-v15-gray-200) !important;
+  color: var(--st-v15-gray-800) !important;
+}
+
+/* ── RESPONSIVE V15 BEHAVIOR ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-container,
+  html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar-container.expanded {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  html[data-st-theme-profile="builtin-erpnext-v15"] .body-sidebar {
+    width: min(280px, 88vw) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html[data-st-theme-profile="builtin-erpnext-v15"] .navbar .container {
+    padding-inline: 10px !important;
+  }
+
+  html[data-st-theme-profile="builtin-erpnext-v15"] .page-head {
+    min-height: 52px !important;
+    padding-inline: 10px !important;
+  }
+
+  html[data-st-theme-profile="builtin-erpnext-v15"] .for-login .page-card,
+  html[data-st-theme-profile="builtin-erpnext-v15"] .for-forgot .page-card,
+  html[data-st-theme-profile="builtin-erpnext-v15"] .for-signup .page-card {
+    width: calc(100vw - 32px) !important;
+    padding: 24px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-st-theme-profile="builtin-erpnext-v15"] *,
+  html[data-st-theme-profile="builtin-erpnext-v15"] *::before,
+  html[data-st-theme-profile="builtin-erpnext-v15"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

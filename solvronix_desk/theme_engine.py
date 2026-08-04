@@ -476,6 +476,23 @@ def builtin_profiles():
             "Neutral Frappe-style baseline for reset and comparison.",
         ),
         _profile(
+            "builtin-erpnext-v15", "ERPNext v15",
+            {
+                "preferred_mode": "Light",
+                "brand_color": "#171717", "accent_color": "#171717",
+                "navbar_background": "#FFFFFF", "toolbar_text_color": "#383838",
+                "sidebar_background": "#FFFFFF", "sidebar_active_color": "#F3F3F3",
+                "sidebar_hover_color": "#F3F3F3", "page_background": "#FFFFFF",
+                "card_background": "#FFFFFF", "text_color": "#383838",
+                "muted_text_color": "#525252", "border_color": "#EDEDED",
+                "primary_button_color": "#171717", "focus_color": "#171717",
+                "shadow_style": "Soft", "sidebar_mode": "Expanded",
+                "sidebar_auto_collapse": False, "sticky_navbar": True,
+                "corner_radius": 8, "card_radius": 12, "font_family": "Inter",
+            },
+            "ERPNext v15-inspired Desk presentation on the v16 runtime.",
+        ),
+        _profile(
             "builtin-light", "Light", {},
             "Bright neutral surfaces with Solvronix brand accents.",
         ),

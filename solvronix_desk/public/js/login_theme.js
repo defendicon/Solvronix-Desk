@@ -22,6 +22,12 @@
     }
   }
 
+  function applyProfileMarker(profileId) {
+    var value = String(profileId || '').trim();
+    if (value) document.documentElement.setAttribute('data-st-theme-profile', value);
+    else document.documentElement.removeAttribute('data-st-theme-profile');
+  }
+
   /* Frappe v16 nests .page-card-head inside .login-content.page-card. Size
      only the outer card; the nested head must stay within its content box. */
   function normalizeCardGeometry() {
@@ -99,6 +105,7 @@
     .then(function (data) {
       var branding = data && data.message;
       if (!branding) return;
+      applyProfileMarker(branding.active_profile);
       applyPreferredMode(branding.preferred_mode);
       if (branding.company_name) document.title = branding.company_name;
       if (branding.favicon) {

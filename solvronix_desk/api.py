@@ -123,6 +123,9 @@ def get_branding():
             "footer_text": config.get("footer_text"),
             "hide_powered": config.get("hide_powered"),
             "preferred_mode": config.get("preferred_mode") or "Light",
+            "active_profile": theme_engine.resolve_profile_id(
+                s, getattr(frappe.session, "user", None)
+            ),
         }
     except Exception:
         frappe.log_error("solvronix_desk.api.get_branding failed")

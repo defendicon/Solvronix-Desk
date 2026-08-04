@@ -12,8 +12,16 @@
   var flags = (window.frappe && frappe.boot && frappe.boot.st_theme_flags) || {};
   var profiles = (window.frappe && frappe.boot && frappe.boot.st_theme_profiles) || [];
   var chartSchema = (window.frappe && frappe.boot && frappe.boot.st_chart_schema) || {};
+  var activeProfile = (window.frappe && frappe.boot && frappe.boot.st_active_theme_profile) || "";
   var scheduleTimer = null;
   var appliedClassMappings = [];
+
+  function applyProfileMarker(profileId) {
+    var html = document.documentElement;
+    var value = String(profileId || "").trim();
+    if (value) html.setAttribute("data-st-theme-profile", value);
+    else html.removeAttribute("data-st-theme-profile");
+  }
 
   /* ── 1. ROUTE CONTEXT ─────────────────────────────────────────────────────
      Expose the current page/DocType/workspace as HTML attributes for scoped CSS. */
@@ -169,6 +177,10 @@
     chartSchema = runtime.chart_schema || chartSchema;
     flags = runtime.flags || flags;
     profiles = runtime.profiles || profiles;
+    if (Object.prototype.hasOwnProperty.call(runtime, "active_profile")) {
+      activeProfile = runtime.active_profile || "";
+      applyProfileMarker(activeProfile);
+    }
     var preferredMode = String(runtime.preferred_mode || "").toLowerCase();
     if (runtime.preview && preferredMode && window.stApplyThemeMode) {
       window.stApplyThemeMode(preferredMode);
@@ -221,6 +233,7 @@
   /* ── 7. BOOT / SPA OBSERVERS ──────────────────────────────────────────────
      Route and DOM observers reapply behavior when Frappe replaces page fragments. */
   function ready() {
+    applyProfileMarker(activeProfile);
     setRouteContext();
     window.addEventListener("st-theme-runtime-refresh", function (event) {
       applyRuntime(event.detail || {});

@@ -4,6 +4,12 @@ Theme Studio is the visual control centre for Solvronix Desk. This guide shows t
 
 Open Theme Studio from `Ctrl+K` or visit `/desk/theme-studio` as a System Manager.
 
+## ERPNext v15 visual profile
+
+The built-in **ERPNext v15** visual profile recreates the v15 Desk character while the site continues to run Frappe/ERPNext v16. Select it from the profile menu, choose **Load**, review the dashboard, form, table, login, and device previews, then publish or assign it through the normal profile deployment controls. Switching to another profile removes the v15-only styling immediately; no v15 code is required at runtime.
+
+The profile changes presentation only. It does not downgrade document models, workflows, permissions, routes, APIs, or server behavior.
+
 Light, Dark, and Auto update the Desk and preview immediately without turning a preview into a saved user preference. Auto follows live operating-system colour-scheme changes. A user's explicit toolbar choice remains in force when a site theme or profile refreshes; leaving Theme Studio restores the mode that was active before editing.
 
 ## Editor and preview workflow

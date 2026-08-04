@@ -63,6 +63,17 @@ class ThemeEngineTest(unittest.TestCase):
                 f'{profile["name"]} should pass bundled WCAG checks',
             )
 
+    def test_builtin_profiles_include_erpnext_v15_visual_profile(self):
+        profiles = {profile["id"]: profile for profile in ENGINE.builtin_profiles()}
+        profile = profiles["builtin-erpnext-v15"]
+
+        self.assertEqual(profile["name"], "ERPNext v15")
+        self.assertTrue(profile["builtin"])
+        self.assertEqual(profile["config"]["preferred_mode"], "Light")
+        self.assertEqual(profile["config"]["shadow_style"], "Soft")
+        self.assertEqual(profile["config"]["sidebar_mode"], "Expanded")
+        self.assertFalse(ENGINE.wcag_failures(profile["config"]))
+
     def test_renderer_outputs_complete_runtime_tokens(self):
         css = ENGINE.render_css(ENGINE.DEFAULT_CONFIG)
         for token in (
