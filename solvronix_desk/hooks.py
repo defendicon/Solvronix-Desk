@@ -24,11 +24,11 @@ app_include_css = [
     "/assets/solvronix_desk/css/smart_home.css?v=7",
     "/assets/solvronix_desk/css/progressive_forms.css?v=3",
     "/assets/solvronix_desk/css/notification_center.css?v=3",
-    "/assets/solvronix_desk/css/polish.css?v=3",
+    "/assets/solvronix_desk/css/polish.css?v=4",
     "/assets/solvronix_desk/css/dark_mode.css?v=14",
-    "/assets/solvronix_desk/css/module_cards.css?v=2",
+    "/assets/solvronix_desk/css/module_cards.css?v=3",
     "/assets/solvronix_desk/css/density.css?v=2",
-    "/assets/solvronix_desk/css/theme_studio.css?v=19",
+    "/assets/solvronix_desk/css/theme_studio.css?v=20",
 ]
 app_include_js = [
     "/assets/solvronix_desk/js/dark_mode.js?v=12",

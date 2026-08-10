@@ -247,7 +247,7 @@ class ThemeStudioTest(unittest.TestCase):
 
     def test_assets_are_versioned(self):
         hooks = HOOKS.read_text(encoding="utf-8")
-        self.assertIn("/assets/solvronix_desk/css/theme_studio.css?v=19", hooks)
+        self.assertIn("/assets/solvronix_desk/css/theme_studio.css?v=20", hooks)
         self.assertIn("/assets/solvronix_desk/js/command_palette.js?v=9", hooks)
         self.assertIn("/assets/solvronix_desk/js/dark_mode.js?v=12", hooks)
         self.assertIn("/assets/solvronix_desk/js/solvronix_desk.js?v=63", hooks)

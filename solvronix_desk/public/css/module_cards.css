@@ -30,29 +30,96 @@
 
 /* ── Search bar ───────────────────────────────────────────────── */
 .st-ws-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
   margin-bottom: 28px;
   max-width: 380px;
 }
 
 .st-ws-search {
   width: 100%;
-  padding: 10px 16px;
+  height: 46px;
+  padding: 10px 64px 10px 42px;
   border-radius: 10px;
   border: 1px solid var(--border-color, #ebeff2);
   background: var(--card-bg, #fff);
   color: var(--text-color, #1f272e);
   font-size: 13px;
   outline: none;
-  transition: border-color 180ms, box-shadow 180ms;
+  transition: border-color 180ms, box-shadow 180ms, transform 180ms;
 }
 
-.st-ws-search:focus {
+.st-ws-search-wrap:focus-within .st-ws-search {
   border-color: var(--st-accent, #F57C00);
-  box-shadow: 0 0 0 3px rgba(var(--st-accent-rgb, 245,124,0), 0.12);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-accent, #F57C00) 14%, transparent), 0 8px 24px rgba(24, 32, 45, .07);
 }
 
 .st-ws-search::placeholder {
   color: var(--text-muted, #8d99a6);
+}
+
+.st-ws-search::-webkit-search-cancel-button { display: none; }
+.st-ws-search-icon {
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--text-muted, #8d99a6);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: stroke 180ms, transform 180ms;
+}
+.st-ws-search-wrap:focus-within .st-ws-search-icon {
+  stroke: var(--st-accent, #F57C00);
+  transform: scale(1.06);
+}
+.st-ws-search-clear {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--st-accent, #F57C00) 11%, transparent);
+  color: var(--st-accent, #F57C00);
+  font-size: 17px;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(.84);
+  pointer-events: none;
+  transition: opacity 150ms, transform 150ms, background 150ms;
+}
+.st-ws-search-wrap.has-query .st-ws-search-clear { opacity: 1; transform: scale(1); pointer-events: auto; }
+.st-ws-search-clear:hover { background: color-mix(in srgb, var(--st-accent, #F57C00) 18%, transparent); }
+.st-ws-search-clear:focus-visible { outline: 2px solid var(--st-accent, #F57C00); outline-offset: 2px; }
+.st-ws-search-key {
+  position: absolute;
+  right: 11px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-color, #ebeff2);
+  border-radius: 5px;
+  color: var(--text-muted, #8d99a6);
+  background: color-mix(in srgb, var(--card-bg, #fff) 88%, var(--border-color, #ebeff2));
+  font-size: 9px;
+  font-weight: 700;
+  pointer-events: none;
+  transition: opacity 150ms, transform 150ms;
+}
+.st-ws-search-wrap.has-query .st-ws-search-key { opacity: 0; transform: translateX(4px); }
+.st-ws-results-count {
+  min-height: 16px;
+  margin: -18px 0 14px;
+  color: var(--text-muted, #8d99a6);
+  font-size: 11px;
+  font-weight: 600;
 }
 
 /* ── Cards grid ───────────────────────────────────────────────── */
@@ -74,7 +141,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  transition: transform 160ms cubic-bezier(0.34,1.56,0.64,1),
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1),
               box-shadow 160ms ease,
               border-color 160ms ease;
   position: relative;
@@ -92,12 +159,30 @@
   border-radius: 14px 14px 0 0;
 }
 
+.st-ws-card::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: -90px;
+  right: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--mod-color, var(--st-accent, #F57C00)) 16%, transparent), transparent 68%);
+  opacity: 0;
+  transform: scale(.7);
+  transition: opacity 220ms, transform 260ms cubic-bezier(.2,.8,.2,1);
+  pointer-events: none;
+}
+
 .st-ws-card:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-3px) scale(1.01);
   box-shadow: 0 8px 28px rgba(0,0,0,0.10);
   border-color: var(--mod-color, var(--st-accent, #F57C00));
   text-decoration: none;
 }
+
+.st-ws-card:hover::after,
+.st-ws-card:focus-visible::after { opacity: 1; transform: scale(1); }
 
 .st-ws-card:hover::before {
   opacity: 1;
@@ -226,6 +311,11 @@ html[data-theme="dark"] .st-ws-search {
 
 html[data-theme="dark"] .st-ws-search::placeholder {
   color: rgba(255,255,255,0.30);
+}
+
+html[data-theme="dark"] .st-ws-search-key {
+  background: #1E2130;
+  border-color: rgba(255,255,255,.1);
 }
 
 html[data-theme="dark"] .st-ws-skeleton .st-ws-card-icon,

@@ -45,20 +45,32 @@ solvronix_desk.AllApps = class AllApps {
 			    '<div class="st-ws-subtitle">' + __("Jump to any workspace from here") + '</div>' +
 			  '</div>' +
 			  '<div class="st-ws-search-wrap">' +
-			    '<input id="st-all-apps-search" class="st-ws-search" type="text" placeholder="' + __("Search apps…") + '" autocomplete="off">' +
+			    '<svg class="st-ws-search-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>' +
+			    '<input id="st-all-apps-search" class="st-ws-search" type="search" placeholder="' + __("Search apps…") + '" autocomplete="off" aria-label="' + __("Search apps") + '" aria-controls="st-all-apps-cards" aria-describedby="st-all-apps-count">' +
+			    '<button class="st-ws-search-clear" type="button" aria-label="' + __("Clear search") + '" title="' + __("Clear search") + '">&times;</button>' +
+			    '<span class="st-ws-search-key" aria-hidden="true">Esc</span>' +
 			  '</div>' +
+			  '<div id="st-all-apps-count" class="st-ws-results-count" aria-live="polite">' + __("Loading apps…") + '</div>' +
 			  '<div id="st-all-apps-cards">' + wc.buildSkeletons(8) + '</div>' +
 			'</div>'
 		);
 
 		var $search = this.$body.find("#st-all-apps-search");
 		$search.on("input", this._filter.bind(this));
+		$search.on("keydown", function (event) {
+			if (event.key !== "Escape") return;
+			$search.val("").trigger("input").trigger("focus");
+		});
+		this.$body.find(".st-ws-search-clear").on("click", function () {
+			$search.val("").trigger("input").trigger("focus");
+		});
 
 		wc.fetchWorkspaces(
 			function (pages) {
 				var $cards = this.$body.find("#st-all-apps-cards");
 				if (!pages || !pages.length) {
 					$cards.html('<div class="st-ws-cards"><div class="st-ws-empty">' + __("No workspaces found.") + "</div></div>");
+					this.$body.find("#st-all-apps-count").text(__("No apps available"));
 					return;
 				}
 
@@ -76,7 +88,7 @@ solvronix_desk.AllApps = class AllApps {
 					});
 				});
 
-				if ($search.val()) this._filter();
+				this._filter();
 			}.bind(this)
 		);
 	}
@@ -84,7 +96,7 @@ solvronix_desk.AllApps = class AllApps {
 	_filter() {
 		var q = (this.$body.find("#st-all-apps-search").val() || "").toLowerCase().trim();
 		var $cards = this.$body.find("#st-all-apps-cards .st-ws-card");
-		var any = false;
+		var visible = 0;
 
 		$cards.each(function () {
 			var $c = $(this);
@@ -92,9 +104,13 @@ solvronix_desk.AllApps = class AllApps {
 			var desc = ($c.find(".st-ws-card-desc").text() || "").toLowerCase();
 			var match = !q || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
 			$c.toggle(match);
-			if (match) any = true;
+			if (match) visible += 1;
 		});
 
-		this.$body.find("#st-all-apps-empty").toggle(!any);
+		this.$body.find("#st-all-apps-empty").toggle(!visible);
+		this.$body.find(".st-ws-search-wrap").toggleClass("has-query", !!q);
+		this.$body.find("#st-all-apps-count").text(
+			visible === 1 ? __("1 app") : __("{0} apps").replace("{0}", visible)
+		);
 	}
 };

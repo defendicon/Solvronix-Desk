@@ -308,6 +308,7 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 	/* ── 4. EDITOR SHELL / CONTROL FACTORIES ─────────────────────────────────
 	   Render from the schema, then cache nodes updated repeatedly by preview. */
 	render() {
+		var self = this;
 		this.$root.off();
 		this.$root.removeClass("sts-loading").addClass("st-theme-studio").html(
 			'<aside class="sts-controls">' +
@@ -321,26 +322,26 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 			"</aside>" +
 			'<main class="sts-workbench">' +
 				'<div class="sts-toolbar">' +
-					'<div class="sts-device-switch" role="group" aria-label="' + __("Preview size") + '">' +
-						'<button class="active" data-device="desktop" title="' + __("Desktop") + '">' + this._icon("desktop") + "</button>" +
-						'<button data-device="tablet" title="' + __("Tablet") + '">' + this._icon("tablet") + "</button>" +
-						'<button data-device="mobile" title="' + __("Mobile") + '">' + this._icon("mobile") + "</button>" +
+					'<div class="sts-device-switch sts-sliding-segment" role="group" aria-label="' + __("Preview size") + '"><i class="sts-segment-indicator" aria-hidden="true"></i>' +
+						'<button type="button" class="active" data-device="desktop" aria-pressed="true" aria-label="' + __("Desktop") + '" data-tooltip="' + __("Desktop") + '">' + this._icon("desktop") + "</button>" +
+						'<button type="button" data-device="tablet" aria-pressed="false" aria-label="' + __("Tablet") + '" data-tooltip="' + __("Tablet") + '">' + this._icon("tablet") + "</button>" +
+						'<button type="button" data-device="mobile" aria-pressed="false" aria-label="' + __("Mobile") + '" data-tooltip="' + __("Mobile") + '">' + this._icon("mobile") + "</button>" +
 					"</div>" +
-					'<div class="sts-scene-switch" role="group">' +
-						'<button class="active" data-preview-scene="dashboard">' + __("Dashboard") + "</button>" +
-						'<button data-preview-scene="form">' + __("Form") + "</button>" +
-						'<button data-preview-scene="table">' + __("Table") + "</button>" +
-						'<button data-preview-scene="login">' + __("Login") + "</button>" +
-						'<button data-preview-scene="workspace">' + __("Workspace") + "</button>" +
-						'<button data-preview-scene="charts">' + __("Charts") + "</button>" +
+					'<div class="sts-scene-switch sts-sliding-segment" role="group" aria-label="' + __("Preview scene") + '"><i class="sts-segment-indicator" aria-hidden="true"></i>' +
+						'<button type="button" class="active" data-preview-scene="dashboard" aria-pressed="true">' + __("Dashboard") + "</button>" +
+						'<button type="button" data-preview-scene="form" aria-pressed="false">' + __("Form") + "</button>" +
+						'<button type="button" data-preview-scene="table" aria-pressed="false">' + __("Table") + "</button>" +
+						'<button type="button" data-preview-scene="login" aria-pressed="false">' + __("Login") + "</button>" +
+						'<button type="button" data-preview-scene="workspace" aria-pressed="false">' + __("Workspace") + "</button>" +
+						'<button type="button" data-preview-scene="charts" aria-pressed="false">' + __("Charts") + "</button>" +
 					"</div>" +
 					this._workspace_selector_html(this.workspace_groups) +
 					'<div class="sts-toolbar-note"><i></i>' + __("Live preview") + "</div>" +
 					'<button class="sts-compare-btn" data-action="compare">' + __("Compare with default") + "</button>" +
 					'<button class="sts-draft-btn" data-action="save-draft">' + __("Save draft") + "</button>" +
 					'<div class="sts-history">' +
-						'<button data-action="undo" title="' + __("Undo") + '">' + this._icon("undo") + "</button>" +
-						'<button data-action="redo" title="' + __("Redo") + '">' + this._icon("redo") + "</button>" +
+						'<button type="button" data-action="undo" aria-label="' + __("Undo") + '" data-tooltip="' + __("Undo") + '">' + this._icon("undo") + "</button>" +
+						'<button type="button" data-action="redo" aria-label="' + __("Redo") + '" data-tooltip="' + __("Redo") + '">' + this._icon("redo") + "</button>" +
 					"</div>" +
 				"</div>" +
 				'<div class="sts-stage">' +
@@ -384,6 +385,20 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 		this.apply();
 		this._load_workspaces();
 		this.$root.toggleClass("is-dirty", this.dirty);
+		setTimeout(function () { self._sync_segment_indicators(); }, 0);
+	}
+
+	_sync_segment_indicators() {
+		var $segments = this.$root.find(".sts-sliding-segment");
+		/* Lightweight test and embedded preview shims may expose only the
+		   selectors they exercise; indicator geometry is progressive polish. */
+		if (!$segments || typeof $segments.each !== "function") return;
+		$segments.each(function () {
+			var active = this.querySelector("button.active");
+			if (!active) return;
+			this.style.setProperty("--sts-segment-x", active.offsetLeft + "px");
+			this.style.setProperty("--sts-segment-width", active.offsetWidth + "px");
+		});
 	}
 
 	/* Profile controls adapt to built-in versus user-created theme ownership. */
@@ -1491,7 +1506,9 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 		this.selected_inspector = null;
 		this.selected_chart_preview_element = null;
 		this._render_inspector();
-		this.$root.find("[data-preview-scene]").removeClass("active").filter('[data-preview-scene="' + scene + '"]').addClass("active");
+		this.$root.find("[data-preview-scene]").removeClass("active").attr("aria-pressed", "false")
+			.filter('[data-preview-scene="' + scene + '"]').addClass("active").attr("aria-pressed", "true");
+		this._sync_segment_indicators();
 		this.$preview.attr("data-scene", scene);
 		this.$root.toggleClass("is-workspace-preview", scene === "workspace");
 		this.$preview.find(".sts-scene").removeClass("active").filter('[data-scene="' + scene + '"]').addClass("active");
@@ -2220,9 +2237,10 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 			self.changed();
 		});
 		this.$root.on("click", "[data-device]", function () {
-			self.$root.find("[data-device]").removeClass("active");
-			$(this).addClass("active");
+			self.$root.find("[data-device]").removeClass("active").attr("aria-pressed", "false");
+			$(this).addClass("active").attr("aria-pressed", "true");
 			self.$preview.attr("data-device", $(this).data("device"));
+			self._sync_segment_indicators();
 			self._restore_inspector_highlight();
 			setTimeout(function () { self._restore_inspector_highlight(); }, 340);
 		});
@@ -2516,6 +2534,8 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 	save_draft() {
 		if (!this._chart_inputs_valid()) return false;
 		var self = this;
+		var $button = this.$root.find('[data-action="save-draft"]');
+		$button.addClass("st-btn-busy").attr("aria-busy", "true").prop("disabled", true);
 		frappe.call({
 			method: "solvronix_desk.theme_api.save_theme_draft",
 			args: { config: this.config },
@@ -2527,6 +2547,9 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 				self.chart_invalid = Object.create(null);
 				self._update_wcag(response.message.wcag_failures);
 				frappe.show_alert({ message: __("Draft saved; published theme is unchanged"), indicator: "blue" }, 4);
+			},
+			always: function () {
+				$button.removeClass("st-btn-busy").removeAttr("aria-busy").prop("disabled", false);
 			},
 		});
 	}
@@ -3165,7 +3188,7 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 			return;
 		}
 		var self = this;
-		this.page.btn_primary.prop("disabled", true);
+		this.page.btn_primary.addClass("st-btn-busy").attr("aria-busy", "true").prop("disabled", true);
 		frappe.call({
 			method: "solvronix_desk.theme_api.publish_theme_config",
 			args: {
@@ -3202,7 +3225,9 @@ solvronix_desk.ThemeStudio = class ThemeStudio {
 				self.remove_draft(false);
 				frappe.show_alert({ message: __("Theme published for everyone"), indicator: "green" }, 4);
 			},
-			always: function () { self.page.btn_primary.prop("disabled", false); },
+			always: function () {
+				self.page.btn_primary.removeClass("st-btn-busy").removeAttr("aria-busy").prop("disabled", false);
+			},
 		});
 	}
 

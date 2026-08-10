@@ -119,6 +119,28 @@ a {
   filter: brightness(1.06);
 }
 
+/* Async CTA feedback keeps the action visible while Frappe completes it. */
+.st-btn-busy {
+  position: relative !important;
+  cursor: wait !important;
+  padding-right: 34px !important;
+}
+.st-btn-busy::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  opacity: .78;
+  animation: st-btn-spin .65s linear infinite;
+}
+@keyframes st-btn-spin { to { transform: rotate(360deg); } }
+
 /* ── 5. FOCUS ──────────────────────────────────────────────────── */
 :focus-visible {
   outline: none;
