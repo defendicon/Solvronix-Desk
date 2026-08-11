@@ -77,6 +77,8 @@
     'html[data-st-theme-suspended="1"] #st-company-header',
     'html[data-st-theme-suspended="1"] #st-powered-by',
     'html[data-st-theme-suspended="1"] #st-setup-guide',
+    'html[data-st-theme-suspended="1"] #st-user-btn',
+    'html[data-st-theme-suspended="1"] #st-user-dropdown',
     'html[data-st-theme-suspended="1"] #st-module-switch-btn',
     'html[data-st-theme-suspended="1"] #st-module-switcher-dropdown',
     'html[data-st-theme-suspended="1"] #st-options-overlay',

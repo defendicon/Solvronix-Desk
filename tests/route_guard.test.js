@@ -93,6 +93,7 @@ test("POS route guard emits valid CSS that hides all Solvronix chrome", () => {
   const runtime = loadGuard("posapp");
   const css = runtime.guardStyle.textContent;
   assert.match(css, /#st-icon-rail/);
+  assert.match(css, /#st-user-dropdown/);
   assert.match(css, /#st-options-overlay/);
   assert.match(css, /#st-options-panel/);
   assert.match(css, /#st-module-switcher-dropdown/);
