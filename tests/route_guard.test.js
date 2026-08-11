@@ -25,6 +25,7 @@ class FakeElement {
 function loadGuard(initialRoute = "posapp") {
   const listeners = {};
   const routeListeners = {};
+  const appendedToHead = [];
   const html = new FakeElement("html");
   const themeLink = new FakeElement("link", {
     rel: "stylesheet",
@@ -33,7 +34,7 @@ function loadGuard(initialRoute = "posapp") {
   });
   const styles = [themeLink];
   const head = {
-    appendChild(element) { element.parentNode = head; return element; },
+    appendChild(element) { element.parentNode = head; appendedToHead.push(element); return element; },
   };
   const document = {
     readyState: "complete",
@@ -71,6 +72,7 @@ function loadGuard(initialRoute = "posapp") {
     context,
     html,
     themeLink,
+    guardStyle: appendedToHead.find((element) => element.id === "st-route-guard-style"),
     setRoute(nextRoute) {
       route = [nextRoute];
       window.location.pathname = `/app/${nextRoute}`;
@@ -85,6 +87,19 @@ test("POS Awesome route suspends Solvronix styles", () => {
   assert.equal(runtime.html.getAttribute("data-st-theme-suspended"), "1");
   assert.equal(runtime.themeLink.getAttribute("media"), "not all");
   assert.equal(runtime.context.window.solvronix_desk.isRouteExcluded(), true);
+});
+
+test("POS route guard emits valid CSS that hides all Solvronix chrome", () => {
+  const runtime = loadGuard("posapp");
+  const css = runtime.guardStyle.textContent;
+  assert.match(css, /#st-icon-rail/);
+  assert.match(css, /#st-options-overlay/);
+  assert.match(css, /#st-options-panel/);
+  assert.match(css, /#st-module-switcher-dropdown/);
+  assert.match(css, /#st-notif-panel/);
+  assert.match(css, /\.st-cp-overlay/);
+  assert.match(css, /\{display:none!important\}$/);
+  assert.doesNotMatch(css, /,\{display/);
 });
 
 test("leaving POS restores the exact original stylesheet media", () => {

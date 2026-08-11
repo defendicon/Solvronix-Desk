@@ -71,15 +71,21 @@
 
   var guardStyle = document.getElementById("st-route-guard-style") || document.createElement("style");
   guardStyle.id = "st-route-guard-style";
-  guardStyle.textContent = [
+  var chromeSelectors = [
     'html[data-st-theme-suspended="1"] #st-top-toolbar',
     'html[data-st-theme-suspended="1"] #st-icon-rail',
-    'html[data-st-theme-suspended="1"] #st-module-switcher',
+    'html[data-st-theme-suspended="1"] #st-company-header',
+    'html[data-st-theme-suspended="1"] #st-powered-by',
+    'html[data-st-theme-suspended="1"] #st-setup-guide',
+    'html[data-st-theme-suspended="1"] #st-module-switch-btn',
+    'html[data-st-theme-suspended="1"] #st-module-switcher-dropdown',
+    'html[data-st-theme-suspended="1"] #st-options-overlay',
     'html[data-st-theme-suspended="1"] #st-options-panel',
+    'html[data-st-theme-suspended="1"] #st-notif-overlay',
+    'html[data-st-theme-suspended="1"] #st-notif-panel',
     'html[data-st-theme-suspended="1"] .st-cp-overlay',
-    'html[data-st-theme-suspended="1"] .st-notification-panel',
-    '{display:none!important}'
-  ].join(",");
+  ];
+  guardStyle.textContent = chromeSelectors.join(",") + "{display:none!important}";
   if (!guardStyle.parentNode) document.head.appendChild(guardStyle);
 
   var observer = new MutationObserver(function (mutations) {
