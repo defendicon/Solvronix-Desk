@@ -223,6 +223,10 @@ This means any company — whether their brand is navy, green, red, or black —
 
 Solvronix Desk tracks Frappe v16 API changes across minor releases — internal shims resolve renamed core methods automatically, so the app works on older production benches and the latest releases alike.
 
+### Full-screen app compatibility
+
+Solvronix Desk automatically suspends its global CSS, theme chrome, command palette, and module-switcher shortcuts on `/app/posapp` (and the legacy `/desk/posapp` path). This keeps POS Awesome's independent Vuetify theme and autofocus behavior isolated. Leaving POS restores the Solvronix Desk theme without a reload.
+
 Works with ERPNext and any other Frappe-based application.
 
 ---

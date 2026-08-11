@@ -20,6 +20,8 @@
     element.textContent = css;
     if (!element.parentNode) document.head.appendChild(element);
     elements.forEach(function (duplicate) { duplicate.remove(); });
+    var guard = window.solvronix_desk && window.solvronix_desk.routeGuard;
+    if (guard && typeof guard.sync === "function") guard.sync();
     try { localStorage.setItem("st_theme_css", css); } catch (e) {}
     return element;
   };

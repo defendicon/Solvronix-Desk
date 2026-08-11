@@ -31,6 +31,7 @@ app_include_css = [
     "/assets/solvronix_desk/css/theme_studio.css?v=20",
 ]
 app_include_js = [
+    "/assets/solvronix_desk/js/route_guard.js?v=1",
     "/assets/solvronix_desk/js/dark_mode.js?v=12",
     "/assets/solvronix_desk/js/personalization.js?v=1",
     "/assets/solvronix_desk/js/solvronix_desk.js?v=63",
